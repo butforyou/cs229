@@ -10,7 +10,21 @@
       "Bash(ssh *)",
       "Bash(ssh-keyscan -t rsa github.com)",
       "Bash(GIT_SSH_COMMAND=\"ssh -o StrictHostKeyChecking=accept-new\" ssh *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "WebSearch",
+      "WebFetch(domain:cs229.stanford.edu)",
+      "WebFetch(domain:github.com)",
+      "Bash(curl -sL \"https://api.github.com/repos/maxim5/cs229-2019-summer/git/trees/master?recursive=1\")",
+      "Bash(curl -sL \"https://api.github.com/repos/vxbrandon/cs229-solutions-2020/git/trees/master?recursive=1\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\陈冠宏\\\\Desktop\\\\cs229\\\\lab\\\\ps1\" \"C:\\\\Users\\\\陈冠宏\\\\Desktop\\\\cs229\\\\lab\\\\ps2\" \"C:\\\\Users\\\\陈冠宏\\\\Desktop\\\\cs229\\\\lab\\\\ps3\")",
+      "Bash(curl -sL __TRACKED_VAR__/ps1.pdf -o ps1/ps1.pdf)",
+      "Bash(curl -sL __TRACKED_VAR__/ps1.zip -o ps1/ps1.zip)",
+      "Bash(curl -sL __TRACKED_VAR__/ps2.pdf -o ps2/ps2.pdf)",
+      "Bash(curl -sL __TRACKED_VAR__/ps2.zip -o ps2/ps2.zip)",
+      "Bash(git clone *)",
+      "Bash(curl -sI \"https://github.com\")"
     ]
   }
 }
