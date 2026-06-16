@@ -16,5 +16,17 @@
 
 使用最大似然估计方法进行概率累计乘积，同时进行取对数可得到如题的似然函数,进行训练参数更新往往是用梯度下降法,所以对于似然函数是取负:$J(\theta)=-\frac{1}{n} \displaystyle \sum_{i=1}^{n}y_{i}log(h_{\theta}(x_{i}))+(1-y_{i})log(1-h_{\theta}(x_{i}))$
 
-对于似然函数进行求偏导可得:$$\frac{\partial J(\theta)}{\partial \theta}=- \displaystyle \frac{1}{n} \sum_{i=1}^{n} y_{i}\frac{h_{\theta}(x)(1-h_{\theta}(x))x}{h_{\theta}(x)}-(1-y_{i})\frac{h_{\theta}(x)(1-h_{\theta}(x))x}{1-h_{\theta}(x)}=-\frac{1}{n} \sum_{i=1}^{n}y_{i}(1-h_{\theta}(x))x-(1-y_{i})h_{\theta}(x)x=-\frac{1}{n} \sum_{i=1}^{n}\{y_{i}-h_{\theta}(x)\}x$$
+对于似然函数进行求偏导可得:$$\frac{\partial J(\theta)}{\partial \theta}=- \displaystyle \frac{1}{n} \sum_{i=1}^{n} y_{i}\frac{h_{\theta}(x)(1-h_{\theta}(x))x}{h_{\theta}(x)}-(1-y_{i})\frac{h_{\theta}(x)(1-h_{\theta}(x))x}{1-h_{\theta}(x)}=-\frac{1}{n} \sum_{i=1}^{n}y_{i}(1-h_{\theta}(x_{i}))x_{i}-(1-y_{i})h_{\theta}(x_{i})x_{i}=-\frac{1}{n} \sum_{i=1}^{n}\{y_{i}-h_{\theta}(x_{i})\}x_{i}$$
 
+常规梯度下降法为$\theta_{i+1}=\theta_{i}-\frac{\partial J(\theta)}{\partial\theta}$,易见这是对一整个向量进行梯度下降
+
+但是本题要求使用牛顿法，求解黑森矩阵，二次下降更快。
+
+在数值分析中学习到的牛顿法:$f(x^{*})=f(x_{i})+f'(x_{i})(x^{*}-x_{i})$,其中$f(x^{*})=0$得到$x_{i+1}=x_{i}-\frac{f(x_{i})}{f'(x_{i})}$
+
+但是牛顿法是求$f(x)=0$的点，也就是我们一阶导所要的驻点。那么就有将$f(x)$带入$J(\theta)$,$\theta_{i+1}=\theta_{i}-\frac{J'(\theta)}{J''(\theta)}=x_{t+1} = \theta_t - \nabla^2 f(\theta_t)^{-1} \nabla f(\theta_t) \quad x_t \in \mathbb{R}^n$
+
+对于一阶导已经求出是一个列向量形式，因此进行二阶导的推导:
+$$
+\nabla^{2}f(\theta)=
+$$
