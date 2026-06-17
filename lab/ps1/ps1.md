@@ -4,6 +4,8 @@
 
 ![image-20260615230745732](E:\杂七杂八\typora,picture\image-20260615230745732.png)
 
+-a.prove
+
 对于逻辑回归,往往将其表征为概率的形式，常见形式为$h(x)=\frac{1}{1+e^{-\theta^{T} x}}$,$P(t)=\begin{cases} t &\text{if} \: \: t>0.5 \\1-t &\text{if}\: \:t<0.5 \end{cases}$
 
 对于输入$x$有$[x_{1},x_{2}....x_{n}]^{T}$,权重$\theta$为$[\theta_{1},\theta_{2}...,\theta_{n}]^{T}$
@@ -28,5 +30,6 @@
 
 对于一阶导已经求出是一个列向量形式，因此进行二阶导的推导:
 $$
-\nabla^{2}f(\theta)=
+\nabla^{2}f(\theta)_{(e,f)}= \frac{1}{n}\sum_{i=1}^{n}x_{f}h_{\theta}(x_{i})(1-h_{\theta}(x_{i}))x_{e}
 $$
+那么黑森矩阵就可以表示为$H=X^{T}ZX$,$Z=h_{\theta}(x_{i})(1-h_{\theta}(x_{i}))\ge0$,因此半正定性成立
