@@ -14,8 +14,15 @@ def main(train_path, valid_path, save_path):
     x_train, y_train = util.load_dataset(train_path, add_intercept=False)
 
     # *** START CODE HERE ***
+    model = GDA()
+    model.fit(x_train, y_train)
+    x_valid, y_valid = util.load_dataset(valid_path, add_intercept=False)
+    print(f"theta: {model.theta}")
+    pred = model.predict(x_valid)
+    np.savetxt(save_path, pred)
     # Train a GDA classifier
     # Plot decision boundary on validation set
+    util.plot(x_valid, y_valid, model.theta, save_path.replace('.txt', '.png'))
     # Use np.savetxt to save outputs from validation set to save_path
     # *** END CODE HERE ***
 
@@ -53,7 +60,28 @@ class GDA:
             y: Training example labels. Shape (n_examples,).
         """
         # *** START CODE HERE ***
+        n, d = x.shape  # n是样本数，d是特征数
+        self.phi = np.mean(y)
+        self.mu_0 = np.mean(x[y==0],axis = 0)
+        self.mu_1 = np.mean(x[y==1],axis = 0)
+        sigma = 0
+        for i in range(n):
+          xi = x[i]
+          if y[i] == 0:
+            diff = xi - self.mu_0
+          else:
+           diff = xi - self.mu_1
+          sigma += np.outer(diff, diff)
+
+        self.sigma = sigma / n
         # Find phi, mu_0, mu_1, and sigma
+        inv_sigma = np.linalg.inv(self.sigma)
+        
+        # 方法1：使用索引赋值（需要确保维度匹配）
+        self.theta = np.zeros(d+1)
+        self.theta[0] = -0.5 * (self.mu_1 @ inv_sigma @ self.mu_1 - 
+                                self.mu_0 @ inv_sigma @ self.mu_0) + np.log(self.phi / (1 - self.phi))
+        self.theta[1:] = inv_sigma @ (self.mu_1 - self.mu_0)
         # Write theta in terms of the parameters
         # *** END CODE HERE ***
 
@@ -67,6 +95,9 @@ class GDA:
             Outputs of shape (n_examples,).
         """
         # *** START CODE HERE ***
+        p = self.phi * np.exp(-0.5 * np.sum((x - self.mu_1) @ np.linalg.inv(self.sigma) * (x - self.mu_1), axis=1)) / \
+            ((1 - self.phi) * np.exp(-0.5 * np.sum((x - self.mu_0) @ np.linalg.inv(self.sigma) * (x - self.mu_0), axis=1)) + self.phi * np.exp(-0.5 * np.sum((x - self.mu_1) @ np.linalg.inv(self.sigma) * (x - self.mu_1), axis=1)))
+        return p
         # *** END CODE HERE
 
 if __name__ == '__main__':

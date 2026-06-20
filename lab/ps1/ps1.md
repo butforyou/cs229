@@ -66,3 +66,17 @@ $$
 ![image-20260619001247803](E:\杂七杂八\typora,picture\image-20260619001247803.png)
 
 题d
+
+通过最大似然估计去求这几个未知参数$\phi,\mu_{1,2},\Sigma$,其中$\phi$为先验概率
+
+$$
+
+![image-20260620233200082](E:\杂七杂八\typora,picture\image-20260620233200082.png)
+
+题f
+
+比较二者不同，主要出现的是二者
+
+![gda图像1](E:\杂七杂八\typora,picture\image-20260620235033810.png)
+
+![logist图像1](E:\杂七杂八\typora,picture\image-20260620235052881.png)
